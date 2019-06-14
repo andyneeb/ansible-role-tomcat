@@ -15,15 +15,15 @@ Available variables are listed below, along with default values (see defaults/ma
 
     java_version: 1.8.0
 
-  tomcat_version: 8.5.42
+    tomcat_version: 8.5.42
 
-  tomcat_http_port: 8080
+    tomcat_http_port: 8080
 
-  tomcat_https_port: 8443
+    tomcat_https_port: 8443
 
-  tomcat_admin_username: admin
+    tomcat_admin_username: admin
 
-  tomcat_admin_password: admin
+    tomcat_admin_password: admin
 
 
 Dependencies
@@ -36,10 +36,12 @@ Example Playbook
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-    - hosts: tomcat_server
-      roles:
-         - role: andyneeb.tomcat
-           become: yes
+```yaml
+- hosts: tomcat_server
+  roles:
+     - role: andyneeb.tomcat
+       become: yes
+```
 
 License
 -------
