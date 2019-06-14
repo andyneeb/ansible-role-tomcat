@@ -13,7 +13,7 @@ Role Variables
 
 Available variables are listed below, along with default values (see defaults/main.yml):
 
-  java_version: 1.8.0
+    java_version: 1.8.0
 
   tomcat_version: 8.5.42
 
