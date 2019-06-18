@@ -12,12 +12,17 @@
     home: /opt/tomcat 
     shell: /bin/nologin
 
+- name: Check if RELEASE-NOTES exists
+  stat: path=/opt/tomcat/RELEASE-NOTES
+  register: release_notes_stat
+
 - name: Check if v{{ tomcat_version }} exists
+  when: release_notes_stat.exists
   shell: "cat /opt/tomcat/RELEASE-NOTES"
   register: release_notes
 
 - name: Download and extract Tomcat
-  when: '"tomcat_version" not in release_notes.stdout'
+  when: '"tomcat_version" not in release_notes.stdout' or 'release_notes_stat.exists == false'
   unarchive:
     src: https://www-eu.apache.org/dist/tomcat/tomcat-8/v{{tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
     dest: /opt/tomcat
