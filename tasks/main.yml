@@ -13,8 +13,9 @@
     shell: /bin/nologin
 
 - name: Check if v{{ tomcat_version }} exists
-  shell: "cat /opt/tomcat/RELEASE-NOTES"
-  register: release_notes 
+  shell: "grep -i 'Apache Tomcat Version' /opt/tomcat/RELEASE-NOTES"
+  register: release_notes
+  ignore_errors: yes 
 
 - name: Download and extract Tomcat
   when: tomcat_version not in release_notes.stdout
