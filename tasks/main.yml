@@ -22,7 +22,7 @@
   register: releasenotes 
 
 - name: Download and extract Tomcat
-  when: 'tomcat_version not in releasenotes.stdout or notes_stat.stat.exists == false'
+  when: '"tomcat_version" in releasenotes.stdout == false or notes_stat.stat.exists == false'
   unarchive:
     src: https://www-eu.apache.org/dist/tomcat/tomcat-8/v{{tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
     dest: /opt/tomcat
