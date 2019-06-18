@@ -17,7 +17,7 @@
   register: release_notes_stat
 
 - name: Check if v{{ tomcat_version }} exists
-  when: release_notes_stat.exists
+  when: release_notes_stat.stat.exists
   shell: "cat /opt/tomcat/RELEASE-NOTES"
   register: release_notes
 
