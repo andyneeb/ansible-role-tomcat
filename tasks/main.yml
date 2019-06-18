@@ -25,6 +25,8 @@
     remote_src: yes
     extra_opts: 
       - --strip-components=1
+  notify:
+    - restart tomcat
 
 - name: Change ownership of Tomcat installation
   file: path=/opt/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
