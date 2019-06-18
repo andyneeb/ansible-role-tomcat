@@ -13,11 +13,11 @@
     shell: /bin/nologin
 
 - name: read RELEASE-NOTES
-  shell: "grep -i '{{tomcat_version }}' /opt/tomcat/RELEASE-NOTES"
-  register: release_version
+  shell: "cat /opt/tomcat/RELEASE-NOTES"
+  register: release_notes
 
 - name: Download and extract Tomcat
-  when: release_version is not changed
+  when: '"tomcat_version" not in release_notes.stout'
   unarchive:
     src: https://www-eu.apache.org/dist/tomcat/tomcat-8/v{{tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz
     dest: /opt/tomcat
