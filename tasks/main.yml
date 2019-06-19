@@ -15,7 +15,8 @@
 - name: Check if v{{ tomcat_version }} exists
   shell: "grep -i 'Apache Tomcat Version' /opt/tomcat/RELEASE-NOTES"
   register: release_notes
-  ignore_errors: yes 
+  ignore_errors: yes
+  changed_when: false 
 
 - name: Download and extract Tomcat
   when: tomcat_version not in release_notes.stdout
